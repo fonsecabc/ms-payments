@@ -14,57 +14,57 @@ export type Routes = {
 }
 
 export function success<T = any>(data: T): HttpResponse<T> {
-    return {
-        statusCode: 200,
-        data,
-    }
+  return {
+    statusCode: 200,
+    data,
+  }
 }
 
 export function badRequest(error: Error): HttpResponse<Error> {
-    return {
-        statusCode: 400,
-        data: error,
-    }
+  return {
+    statusCode: 400,
+    data: error,
+  }
 }
 
 export function undefinedRoute(): HttpResponse<Error> {
-    return {
-        statusCode: 404,
-        data: new RouteNotFoundError(),
-    }
+  return {
+    statusCode: 404,
+    data: new RouteNotFoundError(),
+  }
 }
 
 export function unathorized(error: Error): HttpResponse<Error> {
-    return {
-        statusCode: 401,
-        data: error,
-    }
+  return {
+    statusCode: 401,
+    data: error,
+  }
 }
 
 export function notFound(error: Error): HttpResponse<Error> {
-    return {
-        statusCode: 404,
-        data: error,
-    }
+  return {
+    statusCode: 404,
+    data: error,
+  }
 }
 
 export function invalidParams(error: Error): HttpResponse<Error> {
-    return {
-        statusCode: 422,
-        data: error,
-    }
+  return {
+    statusCode: 422,
+    data: error,
+  }
 }
 
 export function methodNotAllowed(): HttpResponse<Error> {
-    return {
-        statusCode: 405,
-        data: new MethodNotAllowedError(),
-    }
+  return {
+    statusCode: 405,
+    data: new MethodNotAllowedError(),
+  }
 }
 
 export function serverError(): HttpResponse<UnknownError> {
-    return {
-        statusCode: 500,
-        data: new UnknownError(),
-    }
+  return {
+    statusCode: 500,
+    data: new UnknownError(),
+  }
 }

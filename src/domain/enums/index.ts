@@ -1,4 +1,1 @@
-export * from './Sex'
-export * from './GetType'
-export * from './QueryOperators'
-export * from './NutritionalRoutineStatus'
+export * from './DocumentType'

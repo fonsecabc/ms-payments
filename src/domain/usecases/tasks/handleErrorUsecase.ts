@@ -1,6 +1,6 @@
 export namespace HandleErrorUsecase {
     export type Params = {
-        err: string
+        err: Error
     }
 
     export type Response = Error

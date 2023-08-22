@@ -1,7 +1,4 @@
-export * from './getUserUsecase'
-export * from './createUserUsecase'
-export * from './updateUserUsecase'
-export * from './deleteUserUsecase'
+export * from './customer/createCustomerUsecase'
 
 export * from './tasks/handleErrorUsecase'
 

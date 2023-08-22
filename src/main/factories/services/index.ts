@@ -1,6 +1,3 @@
-export * from './getUserServiceFactory'
-export * from './createUserServiceFactory'
-export * from './deleteUserServiceFactory'
-export * from './updateUserServiceFactory'
+export * from './customer/createCustomerServiceFactory'
 
 export * from './auth/verifyAccessTokenServiceFactory'
