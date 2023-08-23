@@ -1,1 +1,1 @@
-export { user } from './main'
+export { payments } from './main'
