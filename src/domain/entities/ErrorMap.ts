@@ -1,5 +1,5 @@
 import { InvalidParamError } from '../../presentation/errors'
-import { EntityAlreadyExistsError } from '../errors'
+import { NotFoundError } from '../errors'
 
 export type ErrorMap = Map<string, Error>
 
@@ -9,15 +9,11 @@ export const ErrorMap: ErrorMap = new Map([
     new InvalidParamError('attrs'),
   ],
   [
-    'The email address is already in use by another account.',
-    new EntityAlreadyExistsError('User'),
-  ],
-  [
-    'The email address is improperly formatted.',
-    new InvalidParamError('email'),
-  ],
-  [
     'Could not be created the subscription because Could not create credit card. The card verification failed.',
     new InvalidParamError('card'),
+  ],
+  [
+    'Subscription not found.',
+    new NotFoundError('subscription'),
   ],
 ])

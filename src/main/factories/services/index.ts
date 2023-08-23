@@ -1,4 +1,5 @@
 export * from './subscription/createSubscriptionServiceFactory'
+export * from './subscription/cancelSubscriptionServiceFactory'
 
 export * from './tasks/makeHttpRequestServiceFactory'
 

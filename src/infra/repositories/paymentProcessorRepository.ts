@@ -45,7 +45,23 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
     return response.body
   }
 
-  private async makeRequest<T = any>({ path, body, method }: PaymentProcessorRepositoryContract.MakeRequest.Params): Promise<PaymentProcessorRepositoryContract.MakeRequest.Response> {
+  async cancelSubscription(params: PaymentProcessorRepositoryContract.CancelSubscription.Params):
+  Promise<PaymentProcessorRepositoryContract.CancelSubscription.Response> {
+    const { subscriptionUid } = params
+
+    await this.makeRequest({
+      path: `subscriptions/${subscriptionUid}`,
+      method: 'DELETE',
+      body: {
+        cancel_pending_invoices: true,
+      },
+    })
+
+    return true
+  }
+
+  private async makeRequest<T = any>({ path, body, method }: PaymentProcessorRepositoryContract.MakeRequest.Params):
+  Promise<PaymentProcessorRepositoryContract.MakeRequest.Response> {
     try {
       const url = `${this.paymentProcessorApiUrl}/${path}`
       const response = await axios.request<T>({

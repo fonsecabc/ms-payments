@@ -1,5 +1,5 @@
 export * from './subscriptions/createSubscriptionUsecase'
-export * from './subscriptions/attachSubscriptionToUserUsecase'
+export * from './subscriptions/cancelSubscriptionUsecase'
 
 export * from './tasks/handleErrorUsecase'
 export * from './tasks/makeHttpRequestUsecase'

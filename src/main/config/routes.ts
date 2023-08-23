@@ -7,5 +7,10 @@ export const routes: Routes[] = [
     method: 'POST',
     handler: controllers.createSubscriptionController,
   },
+  {
+    path: '/subscription/cancel',
+    method: 'DELETE',
+    handler: controllers.cancelSubscriptionController,
+  },
 ]
 
