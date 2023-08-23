@@ -12,5 +12,10 @@ export const routes: Routes[] = [
     method: 'DELETE',
     handler: controllers.cancelSubscriptionController,
   },
+  {
+    path: '/order/nutritional-routine',
+    method: 'POST',
+    handler: controllers.orderNutritionalRoutineController,
+  },
 ]
 

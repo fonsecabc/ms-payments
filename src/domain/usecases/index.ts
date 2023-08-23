@@ -5,3 +5,5 @@ export * from './tasks/handleErrorUsecase'
 export * from './tasks/makeHttpRequestUsecase'
 
 export * from './auth/verifyAccessTokenUsecase'
+
+export * from './orders/orderNutritionalRoutineUsecase'

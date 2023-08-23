@@ -1,4 +1,5 @@
 export * from './userRepository'
 export * from './firebaseRepository'
+export * from './evaluationRepository'
 export * from './authenticationRepository'
 export * from './paymentProcessorRepository'

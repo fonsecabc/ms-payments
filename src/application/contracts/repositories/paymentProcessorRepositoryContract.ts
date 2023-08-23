@@ -4,6 +4,7 @@ import { Card, Discount } from '../../../domain/entities'
 export interface PaymentProcessorRepositoryContract {
   createSubscription(params: PaymentProcessorRepositoryContract.CreateSubscription.Params): Promise<PaymentProcessorRepositoryContract.CreateSubscription.Response>
   cancelSubscription(params: PaymentProcessorRepositoryContract.CancelSubscription.Params): Promise<PaymentProcessorRepositoryContract.CancelSubscription.Response>
+  orderNutritionalRoutine(params: PaymentProcessorRepositoryContract.OrderNutritionalRoutine.Params): Promise<PaymentProcessorRepositoryContract.OrderNutritionalRoutine.Response>
 }
 
 export namespace PaymentProcessorRepositoryContract {
@@ -27,6 +28,21 @@ export namespace PaymentProcessorRepositoryContract {
     }
 
     export type Response = boolean
+  }
+
+  export namespace OrderNutritionalRoutine {
+    export type Params = {
+      customerUid: string
+      paymentMethod: PaymentMethod
+      value: number
+      card?: Card
+      splitValue: number
+      splitRecipientUid: string
+    }
+
+    export type Response = {
+      id: string
+    }
   }
 
   export namespace MakeRequest {

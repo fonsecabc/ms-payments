@@ -1,5 +1,7 @@
-export * from './subscription/createSubscriptionServiceFactory'
-export * from './subscription/cancelSubscriptionServiceFactory'
+export * from './subscriptions/createSubscriptionServiceFactory'
+export * from './subscriptions/cancelSubscriptionServiceFactory'
+
+export * from './orders/orderNutritionalRoutineServiceFactory'
 
 export * from './tasks/makeHttpRequestServiceFactory'
 

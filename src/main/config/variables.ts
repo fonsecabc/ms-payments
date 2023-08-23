@@ -5,6 +5,9 @@ export const variables = {
   firebaseAdminSdk: process.env.CONFIG_FIREBASE_ADMIN_SDK ?? 'undefined',
   monthlySubscriptionId: process.env.MONTHLY_SUBSCRIPTION_ID ?? 'undefined',
   yearlySubscriptionId: process.env.YEARLY_SUBSCRIPTION_ID ?? 'undefined',
+  nutritionalRoutineValue: Number(process.env.NUTRITIONAL_ROUTINE_VALUE) ?? 'undefined',
+  nutritionalRoutineSplitValue: Number(process.env.NUTRITIONAL_ROUTINE_SPLIT_VALUE) ?? 'undefined',
+  nutritionalRoutineSplitRecipientUid: process.env.NUTRITIONAL_ROUTINE_SPLIT_RECIPIENT_UID ?? 'undefined',
 }
 
 export const testVariables = (): boolean => {

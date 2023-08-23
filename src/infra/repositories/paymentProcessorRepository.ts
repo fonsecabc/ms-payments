@@ -60,6 +60,59 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
     return true
   }
 
+  async orderNutritionalRoutine(params: PaymentProcessorRepositoryContract.OrderNutritionalRoutine.Params):
+  Promise<PaymentProcessorRepositoryContract.OrderNutritionalRoutine.Response> {
+    const { customerUid, paymentMethod, value, card, splitValue, splitRecipientUid } = params
+
+    const response = await this.makeRequest({
+      path: 'orders',
+      method: 'POST',
+      body: {
+        customer_id: customerUid,
+        items: [{
+          amount: value,
+          description: 'Rotina Nutricional Stima',
+          quantity: 1,
+        }],
+        payments: [{
+          payment_method: paymentMethod,
+          credit_card: card && {
+            statement_descriptor: 'Rotina Nutricional Stima',
+            operation_type: 'auth_and_capture',
+            card: {
+              number: card.number,
+              cvv: card.cvv,
+              holder_name: card.holderName,
+              exp_month: card.expirationMonth,
+              exp_year: card.expirationYear,
+              billing_address: {
+                line_1: card.billingAddress.line1,
+                line_2: card.billingAddress.line2,
+                zip_code: card.billingAddress.zipCode,
+                city: card.billingAddress.city,
+                state: card.billingAddress.state,
+                country: card.billingAddress.country,
+              },
+            },
+          },
+          pix: {
+            expires_in: 3600,
+          },
+          amount: value,
+          split: {
+            amount: splitValue,
+            recipient_id: splitRecipientUid,
+            type: 'percentage',
+          },
+        }],
+        closed: true,
+        antifraud_enabled: true,
+      },
+    })
+
+    return response.body
+  }
+
   private async makeRequest<T = any>({ path, body, method }: PaymentProcessorRepositoryContract.MakeRequest.Params):
   Promise<PaymentProcessorRepositoryContract.MakeRequest.Response> {
     try {
