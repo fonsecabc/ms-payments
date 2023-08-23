@@ -16,4 +16,8 @@ export const ErrorMap: ErrorMap = new Map([
     'The email address is improperly formatted.',
     new InvalidParamError('email'),
   ],
+  [
+    'Could not be created the subscription because Could not create credit card. The card verification failed.',
+    new InvalidParamError('card'),
+  ],
 ])

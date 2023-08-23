@@ -1,21 +1,23 @@
-import { DocumentType } from '../../../domain/enums'
-import { Address, Customer } from '../../../domain/entities'
+import { PaymentMethod } from '../../../domain/enums'
+import { Card, Discount } from '../../../domain/entities'
 
 export interface PaymentProcessorRepositoryContract {
-    createCustomer(params: PaymentProcessorRepositoryContract.CreateCustomer.Params): Promise<PaymentProcessorRepositoryContract.CreateCustomer.Response>
+    createSubscription(params: PaymentProcessorRepositoryContract.CreateSubscription.Params): Promise<PaymentProcessorRepositoryContract.CreateSubscription.Response>
 }
 
 export namespace PaymentProcessorRepositoryContract {
-    export namespace CreateCustomer {
+    export namespace CreateSubscription {
         export type Params = {
-            userUid: string
-            email: string
-            document: string
-            documentType: DocumentType
-            address: Address
+            customerUid: string
+            planUid: string
+            paymentMethod: PaymentMethod
+            card: Card
+            discounts?: Discount[]
         }
 
-        export type Response = Customer
+        export type Response = {
+            id: string
+        }
     }
 
     export namespace MakeRequest {

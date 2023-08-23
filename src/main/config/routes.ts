@@ -3,9 +3,9 @@ import * as controllers from '../../presentation/controllers'
 
 export const routes: Routes[] = [
   {
-    path: '/customer/create',
+    path: '/subscription/create',
     method: 'POST',
-    handler: controllers.createCustomerController,
+    handler: controllers.createSubscriptionController,
   },
 ]
 

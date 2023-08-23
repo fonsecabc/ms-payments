@@ -8,15 +8,38 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
     private readonly paymentProcessorApiUrl: string
   ) {}
 
-  async createCustomer({ email, userUid }: PaymentProcessorRepositoryContract.CreateCustomer.Params):
-  Promise<PaymentProcessorRepositoryContract.CreateCustomer.Response> {
+  async createSubscription(params: PaymentProcessorRepositoryContract.CreateSubscription.Params):
+  Promise<PaymentProcessorRepositoryContract.CreateSubscription.Response> {
+    const { customerUid, planUid, paymentMethod, card, discounts } = params
+    const { number, holderName, expirationMonth, expirationYear, billingAddress, cvv } = card
+
     const response = await this.makeRequest({
-      path: 'customers',
+      path: 'subscriptions',
       method: 'POST',
       body: {
-        email,
-        name: `${userUid}-${email}`,
-      }
+        customer_id: customerUid,
+        plan_id: planUid,
+        payment_method: paymentMethod,
+        card: {
+          number,
+          cvv,
+          holder_name: holderName,
+          exp_month: expirationMonth,
+          exp_year: expirationYear,
+          billing_address: {
+            line_1: billingAddress.line1,
+            line_2: billingAddress.line2,
+            zip_code: billingAddress.zipCode,
+            city: billingAddress.city,
+            state: billingAddress.state,
+            country: billingAddress.country,
+          },
+        },
+        discounts: discounts?.map((discount) => ({
+          ...discount,
+          discount_type: discount.type,
+        })),
+      },
     })
 
     return response.body
@@ -38,7 +61,7 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
 
       return { statusCode: response.status, body: response.data }
     } catch (error: any) {
-      throw new Error(error)
+      throw new Error(error.response.data.message)
     }
   }
 }

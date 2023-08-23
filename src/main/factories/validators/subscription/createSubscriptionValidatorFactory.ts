@@ -2,15 +2,14 @@ import {
   ValidatorsInterface,
   ValidationComposite,
   RequireParamValidation,
-  EmailValidation,
 } from '../../../../infra/validators'
 
-export class CreateCustomerValidatorFactory {
-  private static instance: CreateCustomerValidatorFactory
+export class CreateSubscriptionValidatorFactory {
+  private static instance: CreateSubscriptionValidatorFactory
 
-  public static getInstance(): CreateCustomerValidatorFactory {
+  public static getInstance(): CreateSubscriptionValidatorFactory {
     if (!this.instance) {
-      this.instance = new CreateCustomerValidatorFactory()
+      this.instance = new CreateSubscriptionValidatorFactory()
     }
 
     return this.instance
@@ -18,10 +17,9 @@ export class CreateCustomerValidatorFactory {
 
   public make(): ValidationComposite {
     const validations: ValidatorsInterface[] = []
-    for (const field of ['userUid', 'email']) {
+    for (const field of ['userUid', 'accessToken', 'customerUid', 'subscriptionType', 'paymentMethod', 'card']) {
       validations.push(new RequireParamValidation(field))
     }
-    validations.push(new EmailValidation('email'))
 
     return new ValidationComposite(validations)
   }

@@ -1,1 +1,1 @@
-export * from './customer/createCustomerValidatorFactory'
+export * from './subscription/createSubscriptionValidatorFactory'
