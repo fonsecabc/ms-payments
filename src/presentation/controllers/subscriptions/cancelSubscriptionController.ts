@@ -12,7 +12,7 @@ type Request = {
   subscriptionUid: string
 }
 
-export async function cancelSubscriptionController(request: Request): Promise<HttpResponse<boolean | Error>> {
+export async function cancelSubscriptionController(request: Request): Promise<HttpResponse<true | Error>> {
   const isValid = await CancelSubscriptionValidatorFactory.getInstance().make().validate(request)
   if (isValid instanceof InvalidParamError) return invalidParams(isValid)
 

@@ -1,11 +1,12 @@
 import {
-  OrderNutritionalRoutineValidatorFactory,
-  OrderNutritionalRoutineServiceFactory,
   VerifyAccessTokenServiceFactory,
+  OrderNutritionalRoutineServiceFactory,
+  OrderNutritionalRoutineValidatorFactory,
 } from '../../../main/factories'
 import { InvalidParamError } from '../../errors'
 import { PaymentMethod } from '../../../domain/enums'
-import { HttpResponse, invalidParams, success, unathorized } from '../../helpers'
+import { NotFoundError } from '../../../domain/errors'
+import { HttpResponse, badRequest, invalidParams, notFound, success, unathorized } from '../../helpers'
 
 type Request = {
   accessToken: string
@@ -22,6 +23,7 @@ export async function orderNutritionalRoutineController(request: Request): Promi
   if (isTokenValid instanceof InvalidParamError) unathorized(isTokenValid)
 
   const order = await OrderNutritionalRoutineServiceFactory.getInstance().make().perform(request)
+  if (order instanceof NotFoundError) return notFound(order)
 
-  return success(order)
+  return order instanceof Error ? badRequest(order) : success(order)
 }

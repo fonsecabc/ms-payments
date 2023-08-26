@@ -1,3 +1,5 @@
+import { CouldNotError } from '../../errors'
+
 export interface CancelSubscriptionUsecase {
     perform(params: CancelSubscriptionUsecase.Params): Promise<CancelSubscriptionUsecase.Response>
 }
@@ -8,5 +10,5 @@ export namespace CancelSubscriptionUsecase {
         subscriptionUid: string
     }
 
-    export type Response = boolean
+    export type Response = true | CouldNotError
 }

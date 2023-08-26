@@ -1,4 +1,4 @@
-import { SubscriptionStatus } from '../../domain/enums'
+import { User } from '../../domain/entities'
 import { UserRepositoryContract } from '../../application/contracts'
 
 import { firestore } from 'firebase-admin'
@@ -10,15 +10,21 @@ export class UserRepository implements UserRepositoryContract {
 
   async attachSubscriptionToUser(params: UserRepositoryContract.AttachSubscriptionToUser.Params):
   Promise<UserRepositoryContract.AttachSubscriptionToUser.Response> {
-    const { userUid, subscriptionUid } = params
+    const { userUid, subscription } = params
 
-    return !!await this.db.collection('users').doc(userUid).update({ subscriptionUid, subscriptionStatus: SubscriptionStatus.ACTIVE })
+    return !!await this.db.collection('users').doc(userUid).update({ subscription })
   }
 
-  async updateSubscriptionStatus(params: UserRepositoryContract.UpdateSubscriptionStatus.Params):
-  Promise<UserRepositoryContract.UpdateSubscriptionStatus.Response> {
-    const { userUid, subscriptionStatus } = params
+  async updateSubscriptionBySubscriptionUid(params: UserRepositoryContract.UpdateSubscriptionBySubscriptionUid.Params):
+  Promise<UserRepositoryContract.UpdateSubscriptionBySubscriptionUid.Response> {
+    const { subscription } = params
 
-    return !!await this.db.collection('users').doc(userUid).update({ subscriptionStatus })
+    const user = (
+      await this.db.collection('users')
+        .where('subscription.uid', '==', subscription.uid)
+        .get()
+    ).docs[0].data() as User
+
+    return !!await this.db.collection('users').doc(user.uid).update({ subscription })
   }
 }

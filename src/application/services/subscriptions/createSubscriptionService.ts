@@ -1,7 +1,8 @@
 import { SubscriptionType } from '../../../domain/enums'
 import { InvalidParamError } from '../../../presentation/errors'
-import { PaymentProcessorRepositoryContract, UserRepositoryContract } from '../../contracts'
 import { CreateSubscriptionUsecase } from '../../../domain/usecases'
+import { PaymentProcessorRepositoryContract, UserRepositoryContract } from '../../contracts'
+import { CouldNotError } from '../../../domain/errors'
 
 export class CreateSubscriptionService implements CreateSubscriptionUsecase {
   constructor(
@@ -24,7 +25,8 @@ export class CreateSubscriptionService implements CreateSubscriptionUsecase {
 
     const subscription = await this.paymentProccesorRepository.createSubscription({ ...params, planUid })
 
-    await this.userRepository.attachSubscriptionToUser({ userUid, subscriptionUid: subscription.id })
+    const isAttached = await this.userRepository.attachSubscriptionToUser({ userUid, subscription })
+    if (!isAttached) return new CouldNotError('attach subscription to user')
 
     return subscription
   }

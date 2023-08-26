@@ -1,24 +1,25 @@
-import { SubscriptionStatus } from '../../../domain/enums'
+import { Subscription } from '../../../domain/entities'
 
 export interface UserRepositoryContract {
-  attachSubscriptionToUser(params: UserRepositoryContract.AttachSubscriptionToUser.Params): Promise<UserRepositoryContract.AttachSubscriptionToUser.Response>
-  updateSubscriptionStatus(params: UserRepositoryContract.UpdateSubscriptionStatus.Params): Promise<UserRepositoryContract.UpdateSubscriptionStatus.Response>
+  attachSubscriptionToUser(params: UserRepositoryContract.AttachSubscriptionToUser.Params):
+  Promise<UserRepositoryContract.AttachSubscriptionToUser.Response>
+  updateSubscriptionBySubscriptionUid(params: UserRepositoryContract.UpdateSubscriptionBySubscriptionUid.Params):
+  Promise<UserRepositoryContract.UpdateSubscriptionBySubscriptionUid.Response>
 }
 
 export namespace UserRepositoryContract {
   export namespace AttachSubscriptionToUser {
     export type Params = {
       userUid: string
-      subscriptionUid: string
+      subscription: Subscription
     }
 
     export type Response = boolean
   }
 
-  export namespace UpdateSubscriptionStatus {
+  export namespace UpdateSubscriptionBySubscriptionUid {
     export type Params = {
-      userUid: string
-      subscriptionStatus: SubscriptionStatus
+      subscription: Subscription
     }
 
     export type Response = boolean

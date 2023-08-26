@@ -1,5 +1,5 @@
-import { InvalidParamError } from '../../presentation/errors'
 import { NotFoundError } from '../errors'
+import { InvalidParamError } from '../../presentation/errors'
 
 export type ErrorMap = Map<string, Error>
 

@@ -1,4 +1,4 @@
-import { Card, Discount } from '../../entities'
+import { Card, Discount, Subscription } from '../../entities'
 import { PaymentMethod, SubscriptionType } from '../../enums'
 
 export interface CreateSubscriptionUsecase {
@@ -16,5 +16,5 @@ export namespace CreateSubscriptionUsecase {
         discounts?: Discount[]
     }
 
-    export type Response = { id: string } | Error
+    export type Response = Subscription | Error
 }

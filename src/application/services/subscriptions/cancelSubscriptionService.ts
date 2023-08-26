@@ -1,4 +1,5 @@
 import { SubscriptionStatus } from '../../../domain/enums'
+import { CouldNotError } from '../../../domain/errors'
 import { CancelSubscriptionUsecase } from '../../../domain/usecases'
 import { PaymentProcessorRepositoryContract, UserRepositoryContract } from '../../contracts'
 
@@ -11,10 +12,13 @@ export class CancelSubscriptionService implements CancelSubscriptionUsecase {
   async perform(params: CancelSubscriptionUsecase.Params): Promise<CancelSubscriptionUsecase.Response> {
     const { subscriptionUid, userUid } = params
 
-    const isCanceled = await this.paymentProccesorRepository.cancelSubscription({ subscriptionUid })
+    const canceledSubscription = await this.paymentProccesorRepository.cancelSubscription({ subscriptionUid })
 
-    await this.userRepository.updateSubscriptionStatus({ userUid, subscriptionStatus: SubscriptionStatus.CANCELED })
+    const isAttached = await this.userRepository.attachSubscriptionToUser({ userUid, subscription: canceledSubscription })
+    if (!isAttached) return new CouldNotError('attach subscription to user')
 
-    return isCanceled
+    return canceledSubscription.status === SubscriptionStatus.CANCELED ?
+      true :
+      new CouldNotError('cancel subscription')
   }
 }

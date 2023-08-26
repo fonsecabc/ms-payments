@@ -4,8 +4,8 @@ import {
   VerifyAccessTokenServiceFactory,
 } from '../../../main/factories'
 import { InvalidParamError } from '../../errors'
-import { Card, Discount } from '../../../domain/entities'
-import { HttpResponse, invalidParams, success, unathorized } from '../../helpers'
+import { Card, Discount, Subscription } from '../../../domain/entities'
+import { HttpResponse, badRequest, invalidParams, success, unathorized } from '../../helpers'
 import { PaymentMethod, SubscriptionType } from '../../../domain/enums'
 
 type Request = {
@@ -18,7 +18,7 @@ type Request = {
   discounts?: Discount[]
 }
 
-export async function createSubscriptionController(request: Request): Promise<HttpResponse<{ id: string } | Error>> {
+export async function createSubscriptionController(request: Request): Promise<HttpResponse<Subscription | Error>> {
   const isValid = await CreateSubscriptionValidatorFactory.getInstance().make().validate(request)
   if (isValid instanceof InvalidParamError) return invalidParams(isValid)
 
@@ -26,6 +26,9 @@ export async function createSubscriptionController(request: Request): Promise<Ht
   if (isTokenValid instanceof InvalidParamError) unathorized(isTokenValid)
 
   const subscription = await CreateSubscriptionServiceFactory.getInstance().make().perform(request)
+  if (subscription instanceof InvalidParamError) return invalidParams(subscription)
 
-  return success(subscription)
+  return subscription instanceof Error ?
+    badRequest(subscription) :
+    success(subscription)
 }

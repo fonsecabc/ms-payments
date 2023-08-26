@@ -15,5 +15,8 @@ export namespace OrderNutritionalRoutineUsecase {
 
     export type Response = {
         id: string
-    }
+        status: string
+        charges: object[]
+        pixQrCode?: string
+    } | Error
 }

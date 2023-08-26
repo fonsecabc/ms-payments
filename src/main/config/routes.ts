@@ -13,9 +13,19 @@ export const routes: Routes[] = [
     handler: controllers.cancelSubscriptionController,
   },
   {
+    path: '/invoice/handle-event',
+    method: 'POST',
+    handler: controllers.handleInvoiceEventController,
+  },
+  {
     path: '/order/nutritional-routine',
     method: 'POST',
     handler: controllers.orderNutritionalRoutineController,
+  },
+  {
+    path: '/order/handle-event',
+    method: 'POST',
+    handler: controllers.handleOrderEventController,
   },
 ]
 

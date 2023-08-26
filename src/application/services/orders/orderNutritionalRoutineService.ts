@@ -1,4 +1,5 @@
 import { OrderNutritionalRoutineUsecase } from '../../../domain/usecases'
+import { NotFoundError, PaymentFailedError } from '../../../domain/errors'
 import { EvaluationRepositoryContract, PaymentProcessorRepositoryContract } from '../../contracts'
 
 export class OrderNutritionalRoutineService implements OrderNutritionalRoutineUsecase {
@@ -13,14 +14,38 @@ export class OrderNutritionalRoutineService implements OrderNutritionalRoutineUs
   async perform(params: OrderNutritionalRoutineUsecase.Params): Promise<OrderNutritionalRoutineUsecase.Response> {
     const { customerUid, evaluationUid, paymentMethod, card } = params
 
+    const evaluation = await this.evaluationRepository.getByUid({ uid: evaluationUid })
+    if (!evaluation) return new NotFoundError('evaluation')
+
     const value = this.nutritionalRoutineValue
     const splitValue = this.nutritionalRoutineSplitValue
     const splitRecipientUid = this.nutritionalRoutineSplitRecipientUid
 
-    const order = await this.paymentProccesorRepository.orderNutritionalRoutine({ customerUid, paymentMethod, card, value, splitValue, splitRecipientUid })
+    const order = await this.paymentProccesorRepository.orderNutritionalRoutine({
+      customerUid,
+      paymentMethod,
+      card,
+      value,
+      splitValue,
+      splitRecipientUid,
+    })
 
-    await this.evaluationRepository.attachNutritionalRoutineOrderToEvaluation({ evaluationUid, orderUid: order.id })
+    await this.evaluationRepository.attachNutritionalRoutineOrderToEvaluation({
+      evaluationUid,
+      orderUid: order.id,
+      paymentStatus: order.status,
+    })
 
-    return order
+    if (order.status === 'failed') {
+      await this.paymentProccesorRepository.closeOrder({ orderUid: order.id, status: order.status })
+      return new PaymentFailedError('nutritional routine')
+    }
+
+    return {
+      id: order.id,
+      status: order.status,
+      charges: order.charges,
+      pixQrCode: order?.pixQrCode,
+    }
   }
 }
