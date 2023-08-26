@@ -16,6 +16,7 @@ export class PaymentProcessorRepositoryFactory {
     return new PaymentProcessorRepository(
       variables.paymentProcessorApiKey,
       variables.paymentProcessorApiUrl,
+      variables.monthlySubscriptionId,
     )
   }
 }
