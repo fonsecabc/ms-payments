@@ -56,7 +56,7 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
       type: subscriptionType,
       status: subscription.status,
       paymentMethod: subscription.payment_method,
-      price: priceInCents * 100,
+      price: priceInCents / 100,
       discountPercentage: discount,
     }
   }
@@ -85,7 +85,7 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
       type: subscriptionType,
       status: subscription.status,
       paymentMethod: subscription.payment_method,
-      price: priceInCents * 100,
+      price: priceInCents / 100,
       discountPercentage: discount,
     }
   }

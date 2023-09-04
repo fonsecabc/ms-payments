@@ -16,4 +16,8 @@ export const ErrorMap: ErrorMap = new Map([
     'Subscription not found.',
     new NotFoundError('subscription'),
   ],
+  [
+    '5 NOT_FOUND: No document to update: projects/stima-2734b/databases/(default)/documents/users/Dbe9RrHEpHb3VGlP35pUGXVAUb63',
+    new NotFoundError('')
+  ]
 ])
