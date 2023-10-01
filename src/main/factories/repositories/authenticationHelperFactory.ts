@@ -1,4 +1,4 @@
-import { AuthRepository } from '../../../infra/repositories'
+import { AuthRepository } from '@/infra/repositories'
 import { FirebaseHelperFactory } from './firebaseHelperFactory'
 
 export class AuthenticationRepositoryFactory {

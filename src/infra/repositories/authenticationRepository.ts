@@ -1,4 +1,4 @@
-import { AuthenticationRepositoryContract } from '../../application/contracts'
+import { AuthenticationRepositoryContract } from '@/application/contracts/repositories'
 import { auth } from 'firebase-admin'
 
 export class AuthRepository implements AuthenticationRepositoryContract {

@@ -1,4 +1,4 @@
-import { Subscription } from '../../../domain/entities'
+import { Subscription } from '@/domain/entities'
 
 export interface UserRepositoryContract {
   attachSubscriptionToUser(params: UserRepositoryContract.AttachSubscriptionToUser.Params):

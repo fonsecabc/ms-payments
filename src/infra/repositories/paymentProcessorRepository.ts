@@ -1,7 +1,7 @@
-import { PaymentProcessorRepositoryContract } from '../../application/contracts'
+import { PaymentProcessorRepositoryContract } from '@/application/contracts/repositories'
 
 import axios from 'axios'
-import { SubscriptionType } from '../../domain/enums'
+import { SubscriptionType } from '@/domain/enums'
 
 export class PaymentProcessorRepository implements PaymentProcessorRepositoryContract {
   constructor(
@@ -140,11 +140,13 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
       },
     })
 
+    console.log(response.body.charges[0])
+
     return {
       id: response.body.id,
       status: response.body.charges[0].status,
-      charges: response.body.charges,
       pixQrCode: response.body.charges[0].last_transaction.qr_code_url,
+      pixPaymentLink: response.body.charges[0].last_transaction.qr_code,
     }
   }
 

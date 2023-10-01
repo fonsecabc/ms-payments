@@ -1,5 +1,5 @@
-import { User } from '../../domain/entities'
-import { UserRepositoryContract } from '../../application/contracts'
+import { User } from '@/domain/entities'
+import { UserRepositoryContract } from '@/application/contracts/repositories'
 
 import { firestore } from 'firebase-admin'
 
@@ -12,7 +12,7 @@ export class UserRepository implements UserRepositoryContract {
   Promise<UserRepositoryContract.AttachSubscriptionToUser.Response> {
     const { userUid, subscription } = params
 
-    return !!await this.db.collection('users').doc(userUid).update({ subscription })
+    return await this.db.collection('users').doc(userUid).update({ subscription }).then(() => true).catch(() => false)
   }
 
   async updateSubscriptionBySubscriptionUid(params: UserRepositoryContract.UpdateSubscriptionBySubscriptionUid.Params):
@@ -25,6 +25,6 @@ export class UserRepository implements UserRepositoryContract {
         .get()
     ).docs[0].data() as User
 
-    return !!await this.db.collection('users').doc(user.uid).update({ subscription })
+    return await this.db.collection('users').doc(user.uid).update({ subscription }).then(() => true).catch(() => false)
   }
 }

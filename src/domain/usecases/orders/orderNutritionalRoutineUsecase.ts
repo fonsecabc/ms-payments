@@ -1,5 +1,5 @@
-import { Card } from '../../entities'
-import { PaymentMethod } from '../../enums'
+import { Card } from '@/domain/entities'
+import { PaymentMethod } from '@/domain/enums'
 
 export interface OrderNutritionalRoutineUsecase {
     perform(params: OrderNutritionalRoutineUsecase.Params): Promise<OrderNutritionalRoutineUsecase.Response>
@@ -16,7 +16,7 @@ export namespace OrderNutritionalRoutineUsecase {
     export type Response = {
         id: string
         status: string
-        charges: object[]
         pixQrCode?: string
+        pixPaymentLink?: string
     } | Error
 }

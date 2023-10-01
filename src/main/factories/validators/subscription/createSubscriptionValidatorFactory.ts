@@ -2,7 +2,7 @@ import {
   ValidatorsInterface,
   ValidationComposite,
   RequireParamValidation,
-} from '../../../../infra/validators'
+} from '@/infra/validators'
 
 export class CreateSubscriptionValidatorFactory {
   private static instance: CreateSubscriptionValidatorFactory

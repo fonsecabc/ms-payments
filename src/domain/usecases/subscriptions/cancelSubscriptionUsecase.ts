@@ -1,4 +1,4 @@
-import { CouldNotError } from '../../errors'
+import { CouldNotError } from '@/domain/errors'
 
 export interface CancelSubscriptionUsecase {
     perform(params: CancelSubscriptionUsecase.Params): Promise<CancelSubscriptionUsecase.Response>

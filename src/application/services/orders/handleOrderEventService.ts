@@ -1,5 +1,5 @@
-import { HandleOrderEventUsecase } from '../../../domain/usecases'
-import { EvaluationRepositoryContract, PaymentProcessorRepositoryContract } from '../../contracts'
+import { HandleOrderEventUsecase } from '@/domain/usecases'
+import { EvaluationRepositoryContract, PaymentProcessorRepositoryContract } from '@/application/contracts/repositories'
 
 export class HandleOrderEventService implements HandleOrderEventUsecase {
   constructor(

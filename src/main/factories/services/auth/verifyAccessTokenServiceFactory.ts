@@ -1,5 +1,5 @@
-import { AuthenticationRepositoryFactory } from '../../repositories'
-import { VerifyAccessTokenService } from '../../../../application/services'
+import { AuthenticationRepositoryFactory } from '@/main/factories/repositories'
+import { VerifyAccessTokenService } from '@/application/services'
 
 export class VerifyAccessTokenServiceFactory {
   private static instance: VerifyAccessTokenServiceFactory

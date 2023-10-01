@@ -1,5 +1,5 @@
-import { InvalidParamError } from '../../../presentation/errors'
-import { ValidatorsInterface } from '../validatorsInterface'
+import { InvalidParamError } from '@/domain/errors'
+import { ValidatorsInterface } from '@/infra/validators'
 import validator from 'validator'
 
 export class EmailValidation implements ValidatorsInterface {

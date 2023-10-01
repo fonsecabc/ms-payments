@@ -1,4 +1,4 @@
-import { PaymentMethod, SubscriptionStatus, SubscriptionType } from '../enums'
+import { PaymentMethod, SubscriptionStatus, SubscriptionType } from '@/domain/enums'
 
 export interface Subscription {
   uid: string

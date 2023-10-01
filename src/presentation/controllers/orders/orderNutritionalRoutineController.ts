@@ -2,11 +2,10 @@ import {
   VerifyAccessTokenServiceFactory,
   OrderNutritionalRoutineServiceFactory,
   OrderNutritionalRoutineValidatorFactory,
-} from '../../../main/factories'
-import { InvalidParamError } from '../../errors'
-import { PaymentMethod } from '../../../domain/enums'
-import { NotFoundError } from '../../../domain/errors'
-import { HttpResponse, badRequest, invalidParams, notFound, success, unathorized } from '../../helpers'
+} from '@/main/factories'
+import { InvalidParamError, NotFoundError } from '@/domain/errors'
+import { PaymentMethod } from '@/domain/enums'
+import { HttpResponse, badRequest, invalidParams, notFound, success, unathorized } from '@/presentation/helpers'
 
 type Request = {
   accessToken: string

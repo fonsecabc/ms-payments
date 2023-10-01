@@ -1,6 +1,6 @@
-import { variables } from '../../../config'
-import { UserRepositoryFactory } from '../../repositories'
-import { HandleInvoiceEventService } from '../../../../application/services'
+import { variables } from '@/main/config'
+import { UserRepositoryFactory } from '@/main/factories/repositories'
+import { HandleInvoiceEventService } from '@/application/services'
 
 export class HandleInvoiceEventServiceFactory {
   private static instance: HandleInvoiceEventServiceFactory

@@ -1,6 +1,6 @@
-import { InvalidParamError } from '../../../presentation/errors'
-import { VerifyAccessTokenUsecase } from '../../../domain/usecases'
-import { AuthRepository } from '../../../infra/repositories'
+import { InvalidParamError } from '@/domain/errors'
+import { VerifyAccessTokenUsecase } from '@/domain/usecases'
+import { AuthRepository } from '@/infra/repositories'
 
 export class VerifyAccessTokenService implements VerifyAccessTokenUsecase {
   constructor(

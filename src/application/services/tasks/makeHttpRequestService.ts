@@ -1,4 +1,4 @@
-import { MakeHttpRequestUsecase } from '../../../domain/usecases'
+import { MakeHttpRequestUsecase } from '@/domain/usecases'
 
 import axios from 'axios'
 

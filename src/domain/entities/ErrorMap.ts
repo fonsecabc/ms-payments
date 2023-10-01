@@ -1,5 +1,4 @@
-import { NotFoundError } from '../errors'
-import { InvalidParamError } from '../../presentation/errors'
+import { NotFoundError, InvalidParamError } from '@/domain/errors'
 
 export type ErrorMap = Map<string, Error>
 
@@ -18,6 +17,6 @@ export const ErrorMap: ErrorMap = new Map([
   ],
   [
     '5 NOT_FOUND: No document to update: projects/stima-2734b/databases/(default)/documents/users/Dbe9RrHEpHb3VGlP35pUGXVAUb63',
-    new NotFoundError('')
-  ]
+    new NotFoundError(''),
+  ],
 ])

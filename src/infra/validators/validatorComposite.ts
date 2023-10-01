@@ -1,4 +1,4 @@
-import { ValidatorsInterface } from '../validators'
+import { ValidatorsInterface } from '@/infra/validators'
 
 export class ValidationComposite implements ValidatorsInterface {
   constructor(

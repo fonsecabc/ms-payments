@@ -1,7 +1,7 @@
-import { CouldNotError } from '../../../domain/errors'
-import { UserRepositoryContract } from '../../contracts'
-import { HandleInvoiceEventUsecase } from '../../../domain/usecases'
-import { PaymentStatus, SubscriptionStatus, SubscriptionType } from '../../../domain/enums'
+import { UserRepositoryContract } from '@/application/contracts/repositories'
+import { CouldNotError } from '@/domain/errors'
+import { HandleInvoiceEventUsecase } from '@/domain/usecases'
+import { PaymentStatus, SubscriptionStatus, SubscriptionType } from '@/domain/enums'
 
 export class HandleInvoiceEventService implements HandleInvoiceEventUsecase {
   constructor(

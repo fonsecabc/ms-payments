@@ -1,6 +1,6 @@
-import { variables } from '../../../config'
-import { CreateSubscriptionService } from '../../../../application/services'
-import { PaymentProcessorRepositoryFactory, UserRepositoryFactory } from '../..'
+import { variables } from '@/main/config'
+import { CreateSubscriptionService } from '@/application/services'
+import { PaymentProcessorRepositoryFactory, UserRepositoryFactory } from '@/main/factories/repositories'
 
 export class CreateSubscriptionServiceFactory {
   private static instance: CreateSubscriptionServiceFactory

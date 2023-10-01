@@ -1,5 +1,5 @@
-import { Card, Discount, Subscription } from '../../entities'
-import { PaymentMethod, SubscriptionType } from '../../enums'
+import { Card, Discount, Subscription } from '@/domain/entities'
+import { PaymentMethod, SubscriptionType } from '@/domain/enums'
 
 export interface CreateSubscriptionUsecase {
     subscriptionMap: Map<SubscriptionType, string>

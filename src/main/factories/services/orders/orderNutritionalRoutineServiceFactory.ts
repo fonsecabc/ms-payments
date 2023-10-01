@@ -1,6 +1,6 @@
-import { OrderNutritionalRoutineService } from '../../../../application/services'
-import { EvaluationRepositoryFactory, PaymentProcessorRepositoryFactory } from '../..'
-import { variables } from '../../../config'
+import { OrderNutritionalRoutineService } from '@/application/services'
+import { EvaluationRepositoryFactory, PaymentProcessorRepositoryFactory } from '@/main/factories/repositories'
+import { variables } from '@/main/config'
 
 export class OrderNutritionalRoutineServiceFactory {
   private static instance: OrderNutritionalRoutineServiceFactory

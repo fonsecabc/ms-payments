@@ -1,8 +1,8 @@
-import { NutritionalRoutineStatus } from '../../domain/enums'
-import { EvaluationRepositoryContract } from '../../application/contracts'
+import { NutritionalRoutineStatus } from '@/domain/enums'
+import { EvaluationRepositoryContract } from '@/application/contracts/repositories'
 
 import { firestore } from 'firebase-admin'
-import { Evaluation } from '../../domain/entities'
+import { Evaluation } from '@/domain/entities'
 
 export class EvaluationRepository implements EvaluationRepositoryContract {
   private readonly evaluationsRef: firestore.CollectionReference
@@ -17,7 +17,10 @@ export class EvaluationRepository implements EvaluationRepositoryContract {
   Promise<EvaluationRepositoryContract.AttachNutritionalRoutineOrderToEvaluation.Response> {
     const { evaluationUid, orderUid, paymentStatus } = params
 
-    return !!await this.evaluationsRef.doc(evaluationUid).update({ orderUid, nutritionalRoutineStatus: NutritionalRoutineStatus.REQUESTED, nutritionalRoutinePaymentStatus: paymentStatus })
+    return await this.evaluationsRef.doc(evaluationUid)
+      .update({ orderUid, nutritionalRoutineStatus: NutritionalRoutineStatus.REQUESTED, nutritionalRoutinePaymentStatus: paymentStatus })
+      .then(() => true)
+      .catch(() => false)
   }
 
   async updateEvaluationPaymentStatusByOrderUid(params: EvaluationRepositoryContract.UpdateEvaluationPaymentStatusByOrderUid.Params):
@@ -25,7 +28,11 @@ export class EvaluationRepository implements EvaluationRepositoryContract {
     const { orderUid, paymentStatus } = params
 
     const evaluation = (await this.evaluationsRef.where('orderUid', '==', orderUid).get()).docs[0].data() as Evaluation
-    return !!await this.evaluationsRef.doc(evaluation.uid).update({ nutritionalRoutinePaymentStatus: paymentStatus })
+
+    return await this.evaluationsRef.doc(evaluation.uid)
+      .update({ nutritionalRoutinePaymentStatus: paymentStatus })
+      .then(() => true)
+      .catch(() => false)
   }
 
   async getByUid(params: EvaluationRepositoryContract.GetByUid.Params): Promise<EvaluationRepositoryContract.GetByUid.Response> {

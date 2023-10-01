@@ -1,5 +1,5 @@
-import { PaymentMethod } from '../../../domain/enums'
-import { Card, Discount, Subscription } from '../../../domain/entities'
+import { PaymentMethod } from '@/domain/enums'
+import { Card, Discount, Subscription } from '@/domain/entities'
 
 export interface PaymentProcessorRepositoryContract {
   createSubscription(params: PaymentProcessorRepositoryContract.CreateSubscription.Params): Promise<PaymentProcessorRepositoryContract.CreateSubscription.Response>
@@ -42,8 +42,8 @@ export namespace PaymentProcessorRepositoryContract {
     export type Response = {
       id: string
       status: string
-      charges: any[]
       pixQrCode?: string
+      pixPaymentLink?: string
     }
   }
 

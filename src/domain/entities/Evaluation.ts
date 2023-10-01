@@ -1,4 +1,4 @@
-import { NutritionalRoutineStatus } from '../enums'
+import { NutritionalRoutineStatus } from '@/domain/enums'
 
 export type Evaluation = {
     uid: string

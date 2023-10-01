@@ -2,9 +2,9 @@ import {
   CancelSubscriptionValidatorFactory,
   CancelSubscriptionServiceFactory,
   VerifyAccessTokenServiceFactory,
-} from '../../../main/factories'
-import { InvalidParamError } from '../../errors'
-import { HttpResponse, invalidParams, success, unathorized } from '../../helpers'
+} from '@/main/factories'
+import { InvalidParamError } from '@/domain/errors'
+import { HttpResponse, invalidParams, success, unathorized } from '@/presentation/helpers'
 
 type Request = {
   accessToken: string

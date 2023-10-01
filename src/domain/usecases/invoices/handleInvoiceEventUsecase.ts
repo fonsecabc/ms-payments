@@ -1,4 +1,4 @@
-import { CouldNotError } from '../../errors'
+import { CouldNotError } from '@/domain/errors'
 
 export interface HandleInvoiceEventUsecase {
   perform(params: HandleInvoiceEventUsecase.Params): Promise<HandleInvoiceEventUsecase.Response>

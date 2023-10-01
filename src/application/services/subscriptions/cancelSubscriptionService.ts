@@ -1,7 +1,7 @@
-import { SubscriptionStatus } from '../../../domain/enums'
-import { CouldNotError } from '../../../domain/errors'
-import { CancelSubscriptionUsecase } from '../../../domain/usecases'
-import { PaymentProcessorRepositoryContract, UserRepositoryContract } from '../../contracts'
+import { SubscriptionStatus } from '@/domain/enums'
+import { CouldNotError } from '@/domain/errors'
+import { CancelSubscriptionUsecase } from '@/domain/usecases'
+import { PaymentProcessorRepositoryContract, UserRepositoryContract } from '@/application/contracts/repositories'
 
 export class CancelSubscriptionService implements CancelSubscriptionUsecase {
   constructor(

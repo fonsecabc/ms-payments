@@ -1,4 +1,4 @@
-import { MakeHttpRequestService } from '../../../../application/services'
+import { MakeHttpRequestService } from '@/application/services'
 
 export class MakeHttpRequestServiceFactory {
   private static instance: MakeHttpRequestServiceFactory

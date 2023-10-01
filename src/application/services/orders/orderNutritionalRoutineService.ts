@@ -1,6 +1,6 @@
-import { OrderNutritionalRoutineUsecase } from '../../../domain/usecases'
-import { NotFoundError, PaymentFailedError } from '../../../domain/errors'
-import { EvaluationRepositoryContract, PaymentProcessorRepositoryContract } from '../../contracts'
+import { OrderNutritionalRoutineUsecase } from '@/domain/usecases'
+import { NotFoundError, PaymentFailedError } from '@/domain/errors'
+import { EvaluationRepositoryContract, PaymentProcessorRepositoryContract } from '@/application/contracts/repositories'
 
 export class OrderNutritionalRoutineService implements OrderNutritionalRoutineUsecase {
   constructor(
@@ -44,7 +44,6 @@ export class OrderNutritionalRoutineService implements OrderNutritionalRoutineUs
     return {
       id: order.id,
       status: order.status,
-      charges: order.charges,
       pixQrCode: order?.pixQrCode,
     }
   }

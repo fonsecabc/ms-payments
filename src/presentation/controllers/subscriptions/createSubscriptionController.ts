@@ -2,11 +2,11 @@ import {
   CreateSubscriptionValidatorFactory,
   CreateSubscriptionServiceFactory,
   VerifyAccessTokenServiceFactory,
-} from '../../../main/factories'
-import { InvalidParamError } from '../../errors'
-import { Card, Discount, Subscription } from '../../../domain/entities'
-import { HttpResponse, badRequest, invalidParams, success, unathorized } from '../../helpers'
-import { PaymentMethod, SubscriptionType } from '../../../domain/enums'
+} from '@/main/factories'
+import { InvalidParamError } from '@/domain/errors'
+import { Card, Discount, Subscription } from '@/domain/entities'
+import { HttpResponse, badRequest, invalidParams, success, unathorized } from '@/presentation/helpers'
+import { PaymentMethod, SubscriptionType } from '@/domain/enums'
 
 type Request = {
   accessToken: string

@@ -1,4 +1,4 @@
-import { Evaluation } from '../../../domain/entities'
+import { Evaluation } from '@/domain/entities'
 
 export interface EvaluationRepositoryContract {
   attachNutritionalRoutineOrderToEvaluation(params: EvaluationRepositoryContract.AttachNutritionalRoutineOrderToEvaluation.Params):

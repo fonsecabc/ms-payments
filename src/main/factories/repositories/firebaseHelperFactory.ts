@@ -1,5 +1,5 @@
-import { variables } from '../../config'
-import { FirebaseRepository } from '../../../infra/repositories'
+import { variables } from '@/main/config'
+import { FirebaseRepository } from '@/infra/repositories'
 
 export class FirebaseHelperFactory {
   private static instance: FirebaseHelperFactory

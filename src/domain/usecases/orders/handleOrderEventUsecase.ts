@@ -1,4 +1,4 @@
-import { PaymentStatus } from '../../enums'
+import { PaymentStatus } from '@/domain/enums'
 
 export interface HandleOrderEventUsecase {
   perform(params: HandleOrderEventUsecase.Params): Promise<HandleOrderEventUsecase.Response>

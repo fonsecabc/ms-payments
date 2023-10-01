@@ -1,4 +1,4 @@
-import { EvaluationRepository } from '../../../infra/repositories'
+import { EvaluationRepository } from '@/infra/repositories'
 import { FirebaseHelperFactory } from './firebaseHelperFactory'
 
 export class EvaluationRepositoryFactory {

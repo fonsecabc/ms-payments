@@ -1,5 +1,5 @@
-import { CancelSubscriptionService } from '../../../../application/services'
-import { PaymentProcessorRepositoryFactory, UserRepositoryFactory } from '../..'
+import { CancelSubscriptionService } from '@/application/services'
+import { PaymentProcessorRepositoryFactory, UserRepositoryFactory } from '@/main/factories/repositories'
 
 export class CancelSubscriptionServiceFactory {
   private static instance: CancelSubscriptionServiceFactory

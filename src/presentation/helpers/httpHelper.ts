@@ -1,4 +1,4 @@
-import { MethodNotAllowedError, RouteNotFoundError, UnknownError } from '../errors'
+import { MethodNotAllowedError, RouteNotFoundError, UnknownError } from '@/presentation/errors'
 
 export type HttpMethods = 'POST' | 'GET' | 'PUT' | 'DELETE'
 

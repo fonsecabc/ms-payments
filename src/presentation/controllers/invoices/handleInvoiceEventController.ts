@@ -1,8 +1,8 @@
 import {
   HandleInvoiceEventServiceFactory,
-} from '../../../main/factories'
-import { CouldNotError } from '../../../domain/errors'
-import { HttpResponse, badRequest, success } from '../../helpers'
+} from '@/main/factories'
+import { CouldNotError } from '@/domain/errors'
+import { HttpResponse, badRequest, success } from '@/presentation/helpers'
 
 type Request = any
 

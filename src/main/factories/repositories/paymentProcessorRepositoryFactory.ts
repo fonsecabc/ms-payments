@@ -1,5 +1,5 @@
-import { variables } from '../../config'
-import { PaymentProcessorRepository } from '../../../infra/repositories'
+import { variables } from '@/main/config'
+import { PaymentProcessorRepository } from '@/infra/repositories'
 
 export class PaymentProcessorRepositoryFactory {
   private static instance: PaymentProcessorRepositoryFactory

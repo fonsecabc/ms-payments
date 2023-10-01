@@ -1,5 +1,5 @@
-import { HandleOrderEventService } from '../../../../application/services'
-import { EvaluationRepositoryFactory, PaymentProcessorRepositoryFactory } from '../../repositories'
+import { HandleOrderEventService } from '@/application/services'
+import { EvaluationRepositoryFactory, PaymentProcessorRepositoryFactory } from '@/main/factories/repositories'
 
 export class HandleOrderEventServiceFactory {
   private static instance: HandleOrderEventServiceFactory
