@@ -1,8 +1,6 @@
-import {
-  HandleInvoiceEventServiceFactory,
-} from '@/main/factories'
-import { CouldNotError } from '@/domain/errors'
 import { HttpResponse, badRequest, success } from '@/presentation/helpers'
+import { CouldNotError } from '@/domain/errors'
+import { HandleInvoiceEventServiceFactory } from '@/main/factories/services'
 
 type Request = any
 

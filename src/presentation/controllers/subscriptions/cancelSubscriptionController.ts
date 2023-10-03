@@ -1,10 +1,8 @@
-import {
-  CancelSubscriptionValidatorFactory,
-  CancelSubscriptionServiceFactory,
-  VerifyAccessTokenServiceFactory,
-} from '@/main/factories'
-import { InvalidParamError } from '@/domain/errors'
 import { HttpResponse, invalidParams, success, unathorized } from '@/presentation/helpers'
+import { InvalidParamError } from '@/domain/errors'
+import { VerifyAccessTokenTaskFactory } from '@/main/factories/tasks'
+import { CancelSubscriptionServiceFactory } from '@/main/factories/services'
+import { CancelSubscriptionValidatorFactory } from '@/main/factories/validators'
 
 type Request = {
   accessToken: string
@@ -16,8 +14,8 @@ export async function cancelSubscriptionController(request: Request): Promise<Ht
   const isValid = await CancelSubscriptionValidatorFactory.getInstance().make().validate(request)
   if (isValid instanceof InvalidParamError) return invalidParams(isValid)
 
-  const isTokenValid = await VerifyAccessTokenServiceFactory.getInstance().make().perform(request)
-  if (isTokenValid instanceof InvalidParamError) unathorized(isTokenValid)
+  const isTokenValid = await VerifyAccessTokenTaskFactory.getInstance().make().perform(request)
+  if (isTokenValid instanceof InvalidParamError) return unathorized(isTokenValid)
 
   const subscription = await CancelSubscriptionServiceFactory.getInstance().make().perform(request)
 

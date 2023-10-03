@@ -1,11 +1,9 @@
-import {
-  VerifyAccessTokenServiceFactory,
-  OrderNutritionalRoutineServiceFactory,
-  OrderNutritionalRoutineValidatorFactory,
-} from '@/main/factories'
-import { InvalidParamError, NotFoundError } from '@/domain/errors'
-import { PaymentMethod } from '@/domain/enums'
 import { HttpResponse, badRequest, invalidParams, notFound, success, unathorized } from '@/presentation/helpers'
+import { PaymentMethod } from '@/domain/enums'
+import { InvalidParamError, NotFoundError } from '@/domain/errors'
+import { VerifyAccessTokenTaskFactory } from '@/main/factories/tasks'
+//import { OrderNutritionalRoutineServiceFactory } from '@/main/factories/services'
+import { OrderNutritionalRoutineValidatorFactory } from '@/main/factories/validators'
 
 type Request = {
   accessToken: string
@@ -18,10 +16,11 @@ export async function orderNutritionalRoutineController(request: Request): Promi
   const isValid = await OrderNutritionalRoutineValidatorFactory.getInstance().make().validate(request)
   if (isValid instanceof InvalidParamError) return invalidParams(isValid)
 
-  const isTokenValid = await VerifyAccessTokenServiceFactory.getInstance().make().perform(request)
-  if (isTokenValid instanceof InvalidParamError) unathorized(isTokenValid)
+  const isTokenValid = await VerifyAccessTokenTaskFactory.getInstance().make().perform(request)
+  if (isTokenValid instanceof InvalidParamError) return unathorized(isTokenValid)
 
-  const order = await OrderNutritionalRoutineServiceFactory.getInstance().make().perform(request)
+  //const order = await OrderNutritionalRoutineServiceFactory.getInstance().make().perform(request)
+  const order: any = 1
   if (order instanceof NotFoundError) return notFound(order)
 
   return order instanceof Error ? badRequest(order) : success(order)

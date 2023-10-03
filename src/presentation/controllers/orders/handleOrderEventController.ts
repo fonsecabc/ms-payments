@@ -1,7 +1,5 @@
-import {
-  HandleOrderEventServiceFactory,
-} from '@/main/factories'
 import { HttpResponse, success } from '@/presentation/helpers'
+import { HandleOrderEventServiceFactory } from '@/main/factories/services'
 
 type Request = any
 

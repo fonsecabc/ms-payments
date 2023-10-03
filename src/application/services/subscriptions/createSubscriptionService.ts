@@ -1,7 +1,6 @@
 import { PaymentProcessorRepositoryContract, UserRepositoryContract } from '@/application/contracts/repositories'
-import { CouldNotError } from '@/domain/errors'
+import { CouldNotError, InvalidParamError } from '@/domain/errors'
 import { SubscriptionType } from '@/domain/enums'
-import { InvalidParamError } from '@/domain/errors'
 import { CreateSubscriptionUsecase } from '@/domain/usecases'
 
 export class CreateSubscriptionService implements CreateSubscriptionUsecase {
