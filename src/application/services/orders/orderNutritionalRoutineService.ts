@@ -41,10 +41,6 @@ export class OrderNutritionalRoutineService implements OrderNutritionalRoutineUs
       return new PaymentFailedError('nutritional routine')
     }
 
-    return {
-      id: order.id,
-      status: order.status,
-      pixQrCode: order?.pixQrCode,
-    }
+    return order
   }
 }

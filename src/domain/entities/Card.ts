@@ -1,4 +1,4 @@
-import { Address } from './Address'
+import { Address } from '@/domain/entities'
 
 export interface Card {
   number: string

@@ -140,8 +140,6 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
       },
     })
 
-    console.log(response.body.charges[0])
-
     return {
       id: response.body.id,
       status: response.body.charges[0].status,

@@ -17,8 +17,7 @@ export class JwtAdapter implements JwtAdapterContract {
   async verify(token: string): Promise<JwtPayload | false> {
     try {
       return verify(token, this.secret) as JwtPayload
-    }
-    catch (error) {
+    } catch (error) {
       return false
     }
   }
