@@ -1,5 +1,5 @@
 import { PaymentMethod } from '@/domain/enums'
-import { Card, Discount, Subscription } from '@/domain/entities'
+import { Card, Subscription } from '@/domain/entities'
 
 export interface PaymentProcessorRepositoryContract {
   createSubscription(params: PaymentProcessorRepositoryContract.CreateSubscription.Params): Promise<PaymentProcessorRepositoryContract.CreateSubscription.Response>
@@ -15,7 +15,7 @@ export namespace PaymentProcessorRepositoryContract {
       planUid: string
       paymentMethod: PaymentMethod
       card: Card
-      discounts?: Discount[]
+      discountId?: string
     }
 
     export type Response = Subscription

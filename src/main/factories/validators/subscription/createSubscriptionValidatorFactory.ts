@@ -4,6 +4,27 @@ import {
   RequireParamValidation,
 } from '@/infra/validators'
 
+const requiredFields: string[] = [
+  'accessToken',
+  'customerUid',
+  'subscriptionType',
+  'paymentMethod',
+  'card',
+  'card.number',
+  'card.holderName',
+  'card.expirationMonth',
+  'card.expirationYear',
+  'card.cvv',
+  'card.billingAddress',
+  'card.billingAddress.country',
+  'card.billingAddress.state',
+  'card.billingAddress.city',
+  'card.billingAddress.zipCode',
+  'card.billingAddress.street',
+  'card.billingAddress.streetNumber',
+  'card.billingAddress.neighborhood',
+]
+
 export class CreateSubscriptionValidatorFactory {
   private static instance: CreateSubscriptionValidatorFactory
 
@@ -17,7 +38,7 @@ export class CreateSubscriptionValidatorFactory {
 
   public make(): ValidationComposite {
     const validations: ValidatorsInterface[] = []
-    for (const field of ['userUid', 'accessToken', 'customerUid', 'subscriptionType', 'paymentMethod', 'card']) {
+    for (const field of requiredFields) {
       validations.push(new RequireParamValidation(field))
     }
 

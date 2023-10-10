@@ -3,6 +3,8 @@ export interface Address {
     state: string
     city: string
     zipCode: string
-    line1: string
-    line2?: string
+    street: string
+    streetNumber: string
+    neighborhood: string
+    complement?: string
 }

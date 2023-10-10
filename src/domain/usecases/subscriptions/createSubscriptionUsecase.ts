@@ -1,4 +1,4 @@
-import { Card, Discount, Subscription } from '@/domain/entities'
+import { Card, Subscription } from '@/domain/entities'
 import { PaymentMethod, SubscriptionType } from '@/domain/enums'
 
 export interface CreateSubscriptionUsecase {
@@ -13,7 +13,7 @@ export namespace CreateSubscriptionUsecase {
         subscriptionType: SubscriptionType
         paymentMethod: PaymentMethod
         card: Card
-        discounts?: Discount[]
+        discountId?: string
     }
 
     export type Response = Subscription | Error

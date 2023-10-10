@@ -12,7 +12,7 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
 
   async createSubscription(params: PaymentProcessorRepositoryContract.CreateSubscription.Params):
   Promise<PaymentProcessorRepositoryContract.CreateSubscription.Response> {
-    const { customerUid, planUid, paymentMethod, card, discounts } = params
+    const { customerUid, planUid, paymentMethod, card/* , discountId*/ } = params
     const { number, holderName, expirationMonth, expirationYear, billingAddress, cvv } = card
 
     const response = await this.makeRequest({
@@ -29,18 +29,14 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
           exp_month: expirationMonth,
           exp_year: expirationYear,
           billing_address: {
-            line_1: billingAddress.line1,
-            line_2: billingAddress.line2,
+            line_1: `${billingAddress.streetNumber},${billingAddress.street},${billingAddress.neighborhood}`,
+            line_2: card.billingAddress.complement,
             zip_code: billingAddress.zipCode,
             city: billingAddress.city,
             state: billingAddress.state,
             country: billingAddress.country,
           },
         },
-        discounts: discounts && discounts.map((discount) => ({
-          ...discount,
-          discount_type: discount.type,
-        })),
       },
     })
 
@@ -117,8 +113,8 @@ export class PaymentProcessorRepository implements PaymentProcessorRepositoryCon
               exp_month: card.expirationMonth,
               exp_year: card.expirationYear,
               billing_address: {
-                line_1: card.billingAddress.line1,
-                line_2: card.billingAddress.line2,
+                line_1: `${card.billingAddress.streetNumber},${card.billingAddress.street},${card.billingAddress.neighborhood}`,
+                line_2: card.billingAddress.complement,
                 zip_code: card.billingAddress.zipCode,
                 city: card.billingAddress.city,
                 state: card.billingAddress.state,
