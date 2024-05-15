@@ -1,5 +1,9 @@
 # Payments, Orders And Subscriptions Management for Health Evaluations Microservice
 
+## **Application Overview**
+
+This microservice manages subscriptions and payments for Stima, a SaaS solution tailored for personal trainers and health consultants, simplifying the process of creating, managing, and tracking clients' body assessments. It provides all the necessary technologies to streamline administrative tasks, allowing professionals to focus on helping clients achieve their fitness goals. Additionally, Stima offers seamless integration with a network of nutritionists, enhancing service value and accessibility. This comprehensive platform not only optimizes client assessment management but also fosters collaboration among industry professionals, elevating the quality of service provided.
+
 ## **Architecture Overview**
 
 Our system is based on three important concepts: **Clean Architecture**, **Domain-Driven Design** (DDD), and **Object-Oriented Programming** (OOP). These concepts help us create an organized, flexible, and easy-to-maintain system.
